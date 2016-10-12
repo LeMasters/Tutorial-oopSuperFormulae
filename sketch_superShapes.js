@@ -1,5 +1,6 @@
-// array particular to the creation of supershapes.
-// don't worry about this for now.
+// These values serve as the starting point for the
+// supershapes we use.  They are:
+//	m, n1, n2, n3, ?, ?  -- I added the last two recently... I need to review code first
 function setSuperValues() {
     var superValues = [
         [6, 60, 55, 30, 1, 1, 1],
@@ -27,8 +28,12 @@ function setSuperValues() {
         [30, 75, 1.5, 35, 1, 0.6],
         [10, 1, 0.5, 2, 1, 1]
     ];
+	// wasn't I returning one choice from here in a self-contained array?
 }
 
+// In order to keep things from being over determinate, I pass the
+// values from the array (above) through this function, which
+// randomizes things a bit.
 function adjustSuperValues() {
     var q = int(random(superValues.length));
     var adj = int(int(random(10, 40)) * 0.1)-0.5;
