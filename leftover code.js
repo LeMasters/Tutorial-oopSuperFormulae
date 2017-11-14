@@ -3,8 +3,24 @@
 Not being used at present
 
 
-*/
+*/fixup! Reorganized files after brief coding hiatus
 
+
+function computeSize() {
+    var testRadius = radius;
+    var testMax = 0;
+    for (var angle = 0; angle < TWO_PI * 5; angle = angle + 0.012) {
+        var r = superShape(angle);
+        var test = r * cos(angle) * testRadius;
+        if (test > testMax) {
+            testMax = test;
+        }
+    }
+    var fitRatio = testMax / testRadius;
+    var fit = situatedIdealRadius / fitRatio;
+    var fitment = fit * iterativeReductionRatio;
+    return fitment;
+}
 
 	// do not delete!  some still in use.
 

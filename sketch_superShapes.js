@@ -1,6 +1,8 @@
 // These values serve as the starting point for the
 // supershapes we use.  They are:
-//	m, n1, n2, n3, ?, ?  -- I added the last two recently... I need to review code first
+//	m, n1, n2, n3, c, a, b
+ 	// see Paul Bourke's site for more explanation
+
 function setSuperValues() {
     var superValues = [
         [6, 60, 55, 30, 1, 1, 1],
@@ -28,31 +30,23 @@ function setSuperValues() {
         [30, 75, 1.5, 35, 1, 0.6],
         [10, 1, 0.5, 2, 1, 1]
     ];
-	// wasn't I returning one choice from here in a self-contained array?
-}
 
 // In order to keep things from being over determinate, I pass the
 // values from the array (above) through this function, which
 // randomizes things a bit.
-function adjustSuperValues() {
-    var q = int(random(superValues.length));
-    var adj = int(int(random(10, 40)) * 0.1)-0.5;
-    m = superValues[q][0] * adj;
-    n1 = superValues[q][1] * adj;
-    n2 = superValues[q][2] * adj;
-    n3 = superValues[q][3] * adj;
-    c = superValues[q][4] * adj;
+
+	var q = int(random(superValues.length));
+    var adjustSuperValue = int(random(1,3));// int(random(-1,1));//
+	var adjustC = (random(0.75,1.25));
+    m = int(superValues[q][0] * adjustSuperValue);
+    n1 = superValues[q][1];
+    n2 = superValues[q][2];
+    n3 = superValues[q][3];
+    c = int(superValues[q][4] * adjustC);
     a = superValues[q][5];
     b = superValues[q][6];
-}
 
-// takes supervalues and creates 
-// data for supershapes
-function plotSuperShape(theta) {
-    var p1 = (1.0 / a) * cos(theta * m * 0.25);
-    p1 = pow(abs(p1), n2);
-    var p2 = (1.0 / b) * sin(theta * m * 0.25);
-    p2 = pow(abs(p2), n3);
-    var p3 = pow(p1 + p2, 1.0 / n1);
-    return (1.0 / p3);
+ // now we reassemble the thing and send it on its way
+	var sendBackArray = [m,n1,n2,n3,c,a,b];
+	return sendBackArray;
 }
